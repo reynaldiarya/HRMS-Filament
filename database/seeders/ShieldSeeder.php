@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use BezhanSalleh\FilamentShield\Support\Utils;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use BezhanSalleh\FilamentShield\Support\Utils;
 use Spatie\Permission\PermissionRegistrar;
 
 class ShieldSeeder extends Seeder
@@ -39,7 +40,7 @@ class ShieldSeeder extends Seeder
             "roles": ["employee"]
         }]';
         $userTenantPivot = '[]';
-        $rolesWithPermissions = '[{"name":"super_admin","guard_name":"web","permissions":["ViewAny:User","View:User","Create:User","Update:User","Delete:User","Restore:User","ForceDelete:User","ForceDeleteAny:User","RestoreAny:User","Replicate:User","Reorder:User","ViewAny:Department","View:Department","Create:Department","Update:Department","Delete:Department","Restore:Department","ForceDelete:Department","ForceDeleteAny:Department","RestoreAny:Department","Replicate:Department","Reorder:Department","ViewAny:Position","View:Position","Create:Position","Update:Position","Delete:Position","Restore:Position","ForceDelete:Position","ForceDeleteAny:Position","RestoreAny:Position","Replicate:Position","Reorder:Position","ViewAny:LeaveType","View:LeaveType","Create:LeaveType","Update:LeaveType","Delete:LeaveType","Restore:LeaveType","ForceDelete:LeaveType","ForceDeleteAny:LeaveType","RestoreAny:LeaveType","Replicate:LeaveType","Reorder:LeaveType","ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","Delete:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","Delete:LeaveRequest","ViewAny:Payroll","View:Payroll","Create:Payroll","Update:Payroll","Delete:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","Create:PerformanceReview","Update:PerformanceReview","Delete:PerformanceReview","view:hr_panel","view:employee_panel"]},{"name":"admin","guard_name":"web","permissions":["ViewAny:User","View:User","Create:User","Update:User","Delete:User","Restore:User","ForceDelete:User","ForceDeleteAny:User","RestoreAny:User","Replicate:User","Reorder:User","ViewAny:Department","View:Department","Create:Department","Update:Department","Delete:Department","Restore:Department","ForceDelete:Department","ForceDeleteAny:Department","RestoreAny:Department","Replicate:Department","Reorder:Department","ViewAny:Position","View:Position","Create:Position","Update:Position","Delete:Position","Restore:Position","ForceDelete:Position","ForceDeleteAny:Position","RestoreAny:Position","Replicate:Position","Reorder:Position","ViewAny:LeaveType","View:LeaveType","Create:LeaveType","Update:LeaveType","Delete:LeaveType","Restore:LeaveType","ForceDelete:LeaveType","ForceDeleteAny:LeaveType","RestoreAny:LeaveType","Replicate:LeaveType","Reorder:LeaveType"]},{"name":"hr","guard_name":"web","permissions":["ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","Delete:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","Delete:LeaveRequest","ViewAny:Payroll","View:Payroll","Create:Payroll","Update:Payroll","Delete:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","Create:PerformanceReview","Update:PerformanceReview","Delete:PerformanceReview","view:hr_panel"]},{"name":"employee","guard_name":"web","permissions":["ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","ViewAny:Payroll","View:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","view:employee_panel"]},{"name":"panel_user","guard_name":"web","permissions":[]}]';
+        $rolesWithPermissions = '[{"name":"super_admin","guard_name":"web","permissions":["ViewAny:User","View:User","Create:User","Update:User","Delete:User","Restore:User","ForceDelete:User","ForceDeleteAny:User","RestoreAny:User","Replicate:User","Reorder:User","ViewAny:Department","View:Department","Create:Department","Update:Department","Delete:Department","Restore:Department","ForceDelete:Department","ForceDeleteAny:Department","RestoreAny:Department","Replicate:Department","Reorder:Department","ViewAny:Position","View:Position","Create:Position","Update:Position","Delete:Position","Restore:Position","ForceDelete:Position","ForceDeleteAny:Position","RestoreAny:Position","Replicate:Position","Reorder:Position","ViewAny:LeaveType","View:LeaveType","Create:LeaveType","Update:LeaveType","Delete:LeaveType","Restore:LeaveType","ForceDelete:LeaveType","ForceDeleteAny:LeaveType","RestoreAny:LeaveType","Replicate:LeaveType","Reorder:LeaveType","ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","Delete:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","Delete:LeaveRequest","ViewAny:Payroll","View:Payroll","Create:Payroll","Update:Payroll","Delete:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","Create:PerformanceReview","Update:PerformanceReview","Delete:PerformanceReview","view:hr_panel","view:employee_panel"]},{"name":"admin","guard_name":"web","permissions":["ViewAny:User","View:User","Create:User","Update:User","Delete:User","Restore:User","ForceDelete:User","ForceDeleteAny:User","RestoreAny:User","Replicate:User","Reorder:User","ViewAny:Department","View:Department","Create:Department","Update:Department","Delete:Department","Restore:Department","ForceDelete:Department","ForceDeleteAny:Department","RestoreAny:Department","Replicate:Department","Reorder:Department","ViewAny:Position","View:Position","Create:Position","Update:Position","Delete:Position","Restore:Position","ForceDelete:Position","ForceDeleteAny:Position","RestoreAny:Position","Replicate:Position","Reorder:Position","ViewAny:LeaveType","View:LeaveType","Create:LeaveType","Update:LeaveType","Delete:LeaveType","Restore:LeaveType","ForceDelete:LeaveType","ForceDeleteAny:LeaveType","RestoreAny:LeaveType","Replicate:LeaveType","Reorder:LeaveType"]},{"name":"hr","guard_name":"web","permissions":["ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","Delete:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","Delete:LeaveRequest","ViewAny:Payroll","View:Payroll","Create:Payroll","Update:Payroll","Delete:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","Create:PerformanceReview","Update:PerformanceReview","Delete:PerformanceReview","view:hr_panel"]},{"name":"employee","guard_name":"web","permissions":["ViewAny:Attendance","View:Attendance","Create:Attendance","Update:Attendance","ViewAny:LeaveRequest","View:LeaveRequest","Create:LeaveRequest","Update:LeaveRequest","ViewAny:Payroll","View:Payroll","ViewAny:PerformanceReview","View:PerformanceReview","View:CheckInOut"]}]';
         $directPermissions = '[]';
 
         // 1. Seed tenants first (if present)
@@ -168,9 +169,9 @@ class ShieldSeeder extends Seeder
             return;
         }
 
-        /** @var \Illuminate\Database\Eloquent\Model $roleModel */
+        /** @var Model $roleModel */
         $roleModel = Utils::getRoleModel();
-        /** @var \Illuminate\Database\Eloquent\Model $permissionModel */
+        /** @var Model $permissionModel */
         $permissionModel = Utils::getPermissionModel();
 
         $tenancyEnabled = false;
@@ -215,7 +216,7 @@ class ShieldSeeder extends Seeder
             return;
         }
 
-        /** @var \Illuminate\Database\Eloquent\Model $permissionModel */
+        /** @var Model $permissionModel */
         $permissionModel = Utils::getPermissionModel();
 
         foreach ($permissions as $permission) {

@@ -3,14 +3,14 @@
 namespace App\Filament\Hr\Resources\LeaveRequests\Schemas;
 
 use Carbon\Carbon;
-use Filament\Schemas\Schema;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 
 class LeaveRequestForm
 {
@@ -31,12 +31,10 @@ class LeaveRequestForm
                 DatePicker::make('start_date')
                     ->live()
                     ->required()
-                    ->afterStateUpdated(fn($state, Set $set, Get $get)=> 
-                        self::calculateDays($set,$get)),
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateDays($set, $get)),
                 DatePicker::make('end_date')
                     ->live()
-                    ->afterStateUpdated(fn($state, Set $set, Get $get)=> 
-                        self::calculateDays($set,$get))
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateDays($set, $get))
                     ->required(),
                 TextInput::make('days')
                     ->required()
@@ -55,11 +53,12 @@ class LeaveRequestForm
                 Textarea::make('rejection_reason')
                     ->default(null)
                     ->columnSpanFull()
-                    ->visible(fn(Get $get) => $get('status') === 'rejected'),
+                    ->visible(fn (Get $get) => $get('status') === 'rejected'),
             ]);
     }
 
-    protected static function calculateDays(Set $set, Get $get){
+    protected static function calculateDays(Set $set, Get $get)
+    {
         $start = $get('start_date');
         $end = $get('end_date');
 

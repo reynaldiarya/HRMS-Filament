@@ -3,15 +3,14 @@
 namespace App\Filament\Employee\Resources\LeaveRequests\Schemas;
 
 use Carbon\Carbon;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
-use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 
 class LeaveRequestForm
 {
@@ -34,15 +33,13 @@ class LeaveRequestForm
                     ->minDate(now()->subDay())
                     ->live()
                     ->required()
-                    ->afterStateUpdated(fn($state, Get $get, Set $set) => 
-                        self::calculateDays($get, $set)
+                    ->afterStateUpdated(fn ($state, Get $get, Set $set) => self::calculateDays($get, $set)
                     ),
                 DatePicker::make('end_date')
                     ->minDate(now())
                     ->live()
                     ->required()
-                    ->afterStateUpdated(fn($state, Get $get, Set $set) => 
-                        self::calculateDays($get, $set)
+                    ->afterStateUpdated(fn ($state, Get $get, Set $set) => self::calculateDays($get, $set)
                     ),
                 TextInput::make('days')
                     ->required()
@@ -57,15 +54,16 @@ class LeaveRequestForm
                 //     ->default('pending')
                 //     ->required(),
                 Hidden::make('status')
-                ->default('pending')
+                    ->default('pending'),
             ]);
     }
 
-    protected static function calculateDays(Get $get, Set $set){
+    protected static function calculateDays(Get $get, Set $set)
+    {
         $start = $get('start_date');
         $end = $get('end_date');
 
-        if($start && $end){
+        if ($start && $end) {
             $startDate = Carbon::parse($start);
             $endDate = Carbon::parse($end);
 

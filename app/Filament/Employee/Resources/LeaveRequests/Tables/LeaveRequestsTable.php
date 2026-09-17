@@ -2,14 +2,13 @@
 
 namespace App\Filament\Employee\Resources\LeaveRequests\Tables;
 
-use Filament\Tables\Table;
 use App\Models\LeaveRequest;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class LeaveRequestsTable
@@ -17,9 +16,9 @@ class LeaveRequestsTable
     public static function configure(Table $table): Table
     {
         return $table
-        ->modifyQueryUsing(function (Builder $query) {
-            return $query->where('user_id', auth()->user()->id);
-        })
+            ->modifyQueryUsing(function (Builder $query) {
+                return $query->where('user_id', auth()->user()->id);
+            })
             ->columns([
                 TextColumn::make('user.name')
                     ->searchable(),
@@ -56,9 +55,9 @@ class LeaveRequestsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make()
-                ->visible(fn(LeaveRequest $record) => $record->status == 'pending'),
+                    ->visible(fn (LeaveRequest $record) => $record->status == 'pending'),
                 DeleteAction::make()
-                ->visible(fn(LeaveRequest $record) => $record->status == 'pending'),
+                    ->visible(fn (LeaveRequest $record) => $record->status == 'pending'),
 
             ])
             ->toolbarActions([

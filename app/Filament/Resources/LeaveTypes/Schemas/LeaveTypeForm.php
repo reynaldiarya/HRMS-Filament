@@ -13,19 +13,19 @@ class LeaveTypeForm
     {
         return $schema
             ->components([
-                Section::make("Leave Details")
-                ->columnSpanFull()
-                ->columns(2)
-                ->schema([
-                    TextInput::make('name')
-                    ->required(),
-                    TextInput::make('days_per_year')
-                        ->required()
-                        ->numeric(),
-                    Toggle::make('is_paid')
-                        ->required(),
-                ])
-                
+                Section::make('Leave Details')
+                    ->columnSpanFull()
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('name')
+                            ->required(),
+                        TextInput::make('days_per_year')
+                            ->required()
+                            ->numeric(),
+                        Toggle::make('is_paid')
+                            ->required(),
+                    ]),
+
             ]);
     }
 }

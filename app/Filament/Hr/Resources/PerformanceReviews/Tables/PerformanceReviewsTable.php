@@ -2,12 +2,12 @@
 
 namespace App\Filament\Hr\Resources\PerformanceReviews\Tables;
 
-use Filament\Tables\Table;
-use Filament\Actions\EditAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 
 class PerformanceReviewsTable
 {
@@ -17,22 +17,22 @@ class PerformanceReviewsTable
             ->columns([
                 TextColumn::make('user.name')
                     ->searchable(),
-                    TextColumn::make('user.employee_id')
+                TextColumn::make('user.employee_id')
                     ->label('Employee ID')
                     ->searchable(),
                 TextColumn::make('reviewer.name')
                     ->searchable(),
                 TextColumn::make('review_period')
                     ->searchable(),
-                
+
                 TextColumn::make('overall_rating')
                     ->numeric()
                     ->badge()
                     ->suffix(' / 10')
                     ->colors([
-                        'danger' => fn($state)=> $state < 5,
-                        'warning' => fn($state)=> $state >= 5 && $state < 8,
-                        'success' => fn($state)=> $state >= 8,
+                        'danger' => fn ($state) => $state < 5,
+                        'warning' => fn ($state) => $state >= 5 && $state < 8,
+                        'success' => fn ($state) => $state >= 8,
                     ])
                     ->sortable(),
                 TextColumn::make('created_at')
@@ -46,13 +46,13 @@ class PerformanceReviewsTable
             ])
             ->filters([
                 SelectFilter::make('user_id')
-                ->relationship('user', 'name')
-                ->searchable()
-                ->preload(),
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload(),
                 SelectFilter::make('reviewer_id')
-                ->relationship('reviewer', 'name')
-                ->searchable()
-                ->preload(),
+                    ->relationship('reviewer', 'name')
+                    ->searchable()
+                    ->preload(),
             ])
             ->recordActions([
                 EditAction::make(),

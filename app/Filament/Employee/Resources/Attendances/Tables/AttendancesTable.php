@@ -2,12 +2,12 @@
 
 namespace App\Filament\Employee\Resources\Attendances\Tables;
 
-use Filament\Tables\Table;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class AttendancesTable
@@ -15,9 +15,9 @@ class AttendancesTable
     public static function configure(Table $table): Table
     {
         return $table
-        ->modifyQueryUsing(function (Builder $query) {
-            return $query->where('user_id', auth()->user()->id);
-        })
+            ->modifyQueryUsing(function (Builder $query) {
+                return $query->where('user_id', auth()->user()->id);
+            })
             ->columns([
                 TextColumn::make('user.name')
                     ->searchable(),

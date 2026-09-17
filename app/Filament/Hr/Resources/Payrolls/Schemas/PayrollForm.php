@@ -3,12 +3,12 @@
 namespace App\Filament\Hr\Resources\Payrolls\Schemas;
 
 use App\Models\User;
-use Filament\Schemas\Schema;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DatePicker;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 
 class PayrollForm
 {
@@ -22,9 +22,9 @@ class PayrollForm
                     ->preload()
                     ->live()
                     ->required()
-                    ->afterStateUpdated(function($state,Set $set){
+                    ->afterStateUpdated(function ($state, Set $set) {
                         $user = User::find($state);
-                        if($user){
+                        if ($user) {
                             $set('basic_salary', $user->salary);
                         }
                     }),
@@ -53,36 +53,32 @@ class PayrollForm
                     ->numeric()
                     ->prefix('$')
                     ->live()
-                    ->afterStateUpdated(fn($state, Set $set, Get $get) => 
-                        self::calculateNetSalary($set,$get)
-                ),
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateNetSalary($set, $get)
+                    ),
                 TextInput::make('allowances')
                     ->required()
                     ->numeric()
                     ->default(0.0)
                     ->prefix('$')
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn($state, Set $set, Get $get) => 
-                        self::calculateNetSalary($set,$get)
-                ),
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateNetSalary($set, $get)
+                    ),
                 TextInput::make('deductions')
                     ->required()
                     ->numeric()
                     ->default(0.0)
                     ->prefix('$')
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn($state, Set $set, Get $get) => 
-                        self::calculateNetSalary($set,$get)
-                ),
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateNetSalary($set, $get)
+                    ),
                 TextInput::make('bonus')
                     ->required()
                     ->numeric()
                     ->default(0.0)
                     ->prefix('$')
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn($state, Set $set, Get $get) => 
-                        self::calculateNetSalary($set,$get)
-                ),
+                    ->afterStateUpdated(fn ($state, Set $set, Get $get) => self::calculateNetSalary($set, $get)
+                    ),
                 TextInput::make('net_salary')
                     ->required()
                     ->disabled()
@@ -97,11 +93,12 @@ class PayrollForm
             ]);
     }
 
-    protected static function calculateNetSalary(Set $set, Get $get){
+    protected static function calculateNetSalary(Set $set, Get $get)
+    {
         $basic = (float) ($get('basic_salary') ?? 0);
-        $allowances = (float) ($get('allowances') ??0);
-        $deductions = (float) ($get('deductions') ??0);
-        $bonus = (float) ($get('bonus') ??0);
+        $allowances = (float) ($get('allowances') ?? 0);
+        $deductions = (float) ($get('deductions') ?? 0);
+        $bonus = (float) ($get('bonus') ?? 0);
 
         // net salary
         $netSalary = $basic + $allowances + $bonus - $deductions;

@@ -14,12 +14,14 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+
 class PositionResource extends Resource
 {
     protected static ?string $model = Position::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Briefcase;
-    protected static string | UnitEnum | null $navigationGroup = 'Organization';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Organization';
 
     protected static ?string $recordTitleAttribute = 'title';
 

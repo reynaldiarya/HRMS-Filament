@@ -14,12 +14,14 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+
 class LeaveTypeResource extends Resource
 {
     protected static ?string $model = LeaveType::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Calendar;
-    protected static string | UnitEnum | null $navigationGroup = 'Leave Management';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Leave Management';
 
     public static function form(Schema $schema): Schema
     {

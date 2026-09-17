@@ -27,10 +27,10 @@ class AttendanceForm
                 ToggleButtons::make('status')
                     ->options(['present' => 'Present', 'absent' => 'Absent', 'late' => 'Late', 'half-day' => 'Half day'])
                     ->colors([
-                        'present'=> 'success',
-                        'absent'=> 'danger',
-                        'late'=> 'warning',
-                        'half-day'=> 'info',
+                        'present' => 'success',
+                        'absent' => 'danger',
+                        'late' => 'warning',
+                        'half-day' => 'info',
                     ])
                     ->default('present')
                     ->grouped()

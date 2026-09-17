@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PerformanceReview extends Model
 {
     protected $fillable = [
-        'user_id', 'reviewer_id', 'review_period', 'quality_of_work', 
-        'productivity', 'communication', 'teamwork', 'leadership', 
-        'overall_rating', 'strengths', 'areas_for_improvement', 'goals', 'comments'
+        'user_id', 'reviewer_id', 'review_period', 'quality_of_work',
+        'productivity', 'communication', 'teamwork', 'leadership',
+        'overall_rating', 'strengths', 'areas_for_improvement', 'goals', 'comments',
     ];
 
     protected $casts = [

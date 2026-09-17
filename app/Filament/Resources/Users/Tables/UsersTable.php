@@ -32,7 +32,7 @@ class UsersTable
                 TextColumn::make('salary')
                     ->numeric()
                     ->sortable(),
-               TextColumn::make('hire_date')
+                TextColumn::make('hire_date')
                     ->date()
                     ->sortable(),
             ])

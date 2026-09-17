@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Payroll extends Model
 {
     protected $fillable = [
-        'user_id', 'month', 'year', 'basic_salary', 'allowances', 
-        'deductions', 'bonus', 'net_salary', 'status', 'paid_at'
+        'user_id', 'month', 'year', 'basic_salary', 'allowances',
+        'deductions', 'bonus', 'net_salary', 'status', 'paid_at',
     ];
 
     protected $casts = [
