@@ -24,7 +24,7 @@ class HrPanelProvider extends PanelProvider
         return $panel
             ->id('hr')
             ->path('hr')
-            ->login()
+            ->loginRouteSlug('../../login')
             ->profile()
             ->passwordReset()
             ->emailVerification()
